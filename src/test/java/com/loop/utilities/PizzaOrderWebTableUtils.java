@@ -5,24 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class PizzaOrderWebTableUtils {
+
+    /**
+     * @param driver
+     * @param name
+     * @param field
+     * @return field's text
+     * @author nsh
+     */
     public static String returnAnyFieldValue(WebDriver driver, String name, String field){
-      /*
-      String index = (field.equalsIgnoreCase("Pizza Type")) ? "[1]"
-        : (field.equalsIgnoreCase("Amount")) ? "[2]"
-        : (field.equalsIgnoreCase("Date")) ? "[3]"
-        : (field.equalsIgnoreCase("Street")) ? "[4]"
-        : (field.equalsIgnoreCase("City")) ? "[5]"
-        : (field.equalsIgnoreCase("State")) ? "[6]"
-        : (field.equalsIgnoreCase("Zip")) ? "[7]"
-        : (field.equalsIgnoreCase("Card")) ? "[8]"
-        : (field.equalsIgnoreCase("Card Number")) ? "[9]"
-        : (field.equalsIgnoreCase("Exp")) ? "[10]"
-        : (System.out.println("There is no such field: " + field), "") ;
-
-System.out.println(index);
-       */
         String index = "";
-
         if (field.equalsIgnoreCase("Pizza Type")){
             index = "[1]";
         } else if (field.equalsIgnoreCase("Amount")) {
@@ -48,16 +40,5 @@ System.out.println(index);
         }
         WebElement element = driver.findElement(By.xpath("//td[.='" + name + "']//following-sibling::td" + index));
         return element.getText();
-
-        /*
-        String result = (n == 0) ? "Case 0"
-        : (n == 1) ? "Case 1"
-        : (n == 2) ? "Case 2"
-        : (n == 3) ? "Case 3"
-        : (n == 4) ? "Case 4"
-        : (n == 5) ? "Case 5"
-        : "Default Case";
-
-         */
     }
 }

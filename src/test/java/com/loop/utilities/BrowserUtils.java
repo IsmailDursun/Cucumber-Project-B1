@@ -1,5 +1,6 @@
 package com.loop.utilities;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,46 +10,41 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 
 public class BrowserUtils {
+
     /**
-     * validate if driver switched to expected url and title
+     * validate if driver switched to expected ur and title
      * @param driver
      * @param expectedUrl
      * @param expectedTitle
-     * @author Vlad
+     * @author nadir
      * implements assertion
-     * note: usually we do not do validation in t\method, this is for practicing purposes
+     * note: usually we do not do validation in method, this is for practicing purposes
      */
-    public static void switchWindowAndValidate(WebDriver driver,String expectedUrl, String expectedTitle){
-        expectedUrl = expectedUrl.toLowerCase();
+    public static void switchWindowAndValidate(WebDriver driver, String expectedUrl, String expectedTitle){
+        expectedUrl= expectedUrl.toLowerCase();
         expectedTitle = expectedTitle.toLowerCase();
-
         Set<String> windowHandles = driver.getWindowHandles();
-
-        for(String each : windowHandles){
+        for (String each : windowHandles) {
             driver.switchTo().window(each);
-
             if(driver.getCurrentUrl().toLowerCase().contains(expectedUrl)){
                 break;
             }
         }
-
-       assertTrue(driver.getTitle().toLowerCase().contains(expectedTitle));
-
+        Assert.assertTrue(driver.getTitle().toLowerCase().contains(expectedTitle));
     }
+
 
     /**
      * switches to new window by the exact title
-     * return to original window if windows with give title not found
-     * @param driver
-     * @param targetTitle
-     * author Vlad
+     * returns to original window if windows with given title not found
      */
     public static void switchToWindow(WebDriver driver, String targetTitle){
         String origin = driver.getWindowHandle();
@@ -60,27 +56,32 @@ public class BrowserUtils {
         }
         driver.switchTo().window(origin);
     }
+
+    /**
+     * @param driver
+     * @param expectedTitle
+     * returns void, assertion is implemented
+     * @authot nadir
+     */
     public static void validateTitle(WebDriver driver, String expectedTitle){
-        assertEquals(driver.getTitle(),expectedTitle);
+        Assert.assertTrue(driver.getTitle().contains(expectedTitle));
     }
 
     /**
-     *
-
-     @param nameOfthePage from loop practice page
-     once you on the page call it
-     @nsh*/
-    public static void loopLinkClick(String nameOfthePage){
-        WebElement element = Driver.getDriver().findElement(By.xpath("//a[.='" + nameOfthePage + "']"));
+     * Click any link from loop practice
+     * @param nameOfPage
+     * @author nsh
+     */
+    public static void loopLinkClick (String nameOfPage){
+        WebElement element = Driver.getDriver().findElement(By.xpath("//a[.='" + nameOfPage + "']"));
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-     }
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
 
     /**
      * Moves the mouse to given element
      * @param element on which to hover
-     * @author Vlad
+     * @author nsh
      */
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
@@ -90,11 +91,10 @@ public class BrowserUtils {
     /**
      * Scrolls down to an element using JavaScript
      * @param element
-     * @author Vlad
+     * @author nsh
      */
     public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-
     }
 
     /**
@@ -103,29 +103,31 @@ public class BrowserUtils {
      * @author nsh
      */
     public static void clickWithJS(WebElement element) {
-  scrollToElement(element);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
 
     /**
-
-     Performs double click action on an element
-     @param element
-     @author nsh*/
+     * Performs double click action on an element
+     * @param element
+     * @author nsh
+     */
     public static void doubleClick(WebElement element) {
-        new Actions(Driver.getDriver()).doubleClick(element).build().perform();}
+        new Actions(Driver.getDriver()).doubleClick(element).build().perform();
+    }
 
     /**
-     * waits for providing element to be visible
+     * Waits for the provided element to be visible on the page
      * @param element
-     * @param timeToWaitSec
-     * return element
-     * @author Nadir
+     * @param timeToWaitInSec
+     * @return
+     * @author nsh
      */
-    public static WebElement waitForVisibility(WebElement element,int timeToWaitSec){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(timeToWaitSec));
+    public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeToWaitInSec));
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
+
     /**
      * Waits for the provided element to be invisible on the page
      * @param element
@@ -139,21 +141,21 @@ public class BrowserUtils {
     }
 
     /**
-     * method that will wait untill the element becomes clickable
+     * Waits for provided element to be clickable
      * @param element
-     * @param timeOut
+     * @param timeout
      * @return
-     * @auth Vlad
+     * @author nsh
      */
-    public static WebElement waitForClickable(WebElement element, int timeToWaitInSec) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeToWaitInSec));
+    public static WebElement waitForClickable(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     /**
-     *method performs a pause
+     * performs a pause
      * @param seconds
-     * @throws InterruptedException
+     * @author nsh
      */
     public static void justWait(int seconds){
         try{
@@ -165,5 +167,42 @@ public class BrowserUtils {
 
 
 
+    /**
+     *
+     * @param elements
+     * @return
+     */
+
+
+    public static List<String> getElementsText(List<WebElement> elements) {
+        return elements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+
+
+
+
+
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

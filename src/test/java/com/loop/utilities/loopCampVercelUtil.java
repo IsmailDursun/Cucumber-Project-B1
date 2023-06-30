@@ -1,6 +1,6 @@
 package com.loop.utilities;
 
-public class LoopCampVerselUtil {
+public class loopCampVercelUtil {
 
 
     public static String loopCampPractice(String practice){
