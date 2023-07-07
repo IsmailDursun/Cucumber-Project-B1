@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Map;
-
 public class ProductStepDefs {
 
     ProductPage productPage = new ProductPage();
@@ -68,6 +67,8 @@ public class ProductStepDefs {
 
 
 
+    /*if we need the key then we use map, if we dont need key (header) then we use list*/
+
     @Then("User should be able to see expected prices in following products with listOflist")
     public void user_should_be_able_to_see_expected_prices_in_following_products_with_list_oflist(List<List<String>> productDetails) {
 
@@ -75,22 +76,14 @@ public class ProductStepDefs {
         for (List<String> productDetail : productDetails) {
             System.out.println(" ======== Product Details ======== ");
             System.out.println(productDetail.get(0));  //  Category
-
-
             // click category
             productPage.clickCategory(productDetail.get(0));
-
             // get product price
             String actualPrice = productPage.getProductPrice(productDetail.get(1));
-
-
             System.out.println(productDetail.get(1));  // Product
-
-
             // get me expectedPrice
             String expectedPrice = productDetail.get(2);
             System.out.println(productDetail.get(2));  // price
-
 
             Assert.assertEquals(expectedPrice,actualPrice);
         }

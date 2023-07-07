@@ -11,10 +11,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-
-import javax.swing.*;
-import java.security.Key;
-
 public class SmartBearStepDefs {
 
     SmartBearLoginPage loginPage = new SmartBearLoginPage();
@@ -36,12 +32,12 @@ public class SmartBearStepDefs {
         Select dropdown = new Select(orderPage.product);
         dropdown.selectByValue(product);
     }
-
     @When("user enters quantity {int}")
-    public void user_enters_quantity(Integer quantity) throws InterruptedException {
+    public void user_enters_quantity(Integer quantity) {
         orderPage.quantity.sendKeys(Keys.BACK_SPACE);
         orderPage.quantity.sendKeys(quantity.toString());
     }
+
 
     @When("user enters customer name {string}")
     public void user_enters_customer_name(String name) {
@@ -76,8 +72,8 @@ public class SmartBearStepDefs {
                 .ifPresent(WebElement::click);
     }
 
-    @When("user enters credit car number {string}")
-    public void user_enters_credit_car_number(String cardNumber) {
+    @When("user enters credit card number {string}")
+    public void user_enters_credit_card_number(String cardNumber) {
         orderPage.cardNumber.sendKeys(cardNumber);
     }
 
@@ -96,5 +92,7 @@ public class SmartBearStepDefs {
     public void user_should_see_in_the_first_row_of_the_table(String string) {
 
     }
+
+
 
 }

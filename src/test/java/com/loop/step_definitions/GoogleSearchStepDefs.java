@@ -47,6 +47,7 @@ public class GoogleSearchStepDefs {
 
     @Then("user search the following items")
     public void user_search_the_following_items(List <Map<String, String>>items) {
+
         for (Map<String, String> item : items) {
             System.out.println(item.get("items"));
             googlePage.searchBox.clear();
@@ -63,7 +64,7 @@ public class GoogleSearchStepDefs {
 
     @When("users search for the {string}")
     public void users_search_for_the(String country) throws InterruptedException {
-        googlePage.searchBox.sendKeys("What is the capiyal of " + country + Keys.ENTER);
+        googlePage.searchBox.sendKeys("What is the capital of " + country + Keys.ENTER);
         Thread.sleep(3000);
     }
     @Then("user should see the {string} in the result")

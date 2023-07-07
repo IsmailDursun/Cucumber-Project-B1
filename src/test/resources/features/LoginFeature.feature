@@ -34,8 +34,8 @@ Feature: Docuport Login Logout Feature
 @regression
   Scenario: Login as an client map practice
     When user enters credentials
-      | username | b1g1_client@gmail.com |
-      | password | group1                |
+      | username | b1g3_client@gmail.com |
+      | password | Group3                |
     Then user should see the home page for client
 
 

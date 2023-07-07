@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-
 public class ProductPage {
 
     public ProductPage() {
@@ -60,25 +59,14 @@ public class ProductPage {
     @FindBy(xpath = "//a[@class='hrefch']")
     public List<WebElement> products;
 
-
     public void clickCategory(String category) {
-
         Driver.getDriver().findElement(By.xpath("//a[.='" + category + "']")).click();
         BrowserUtils.justWait(2);
-
     }
-
 
     public String getProductPrice(String product) {
-
-
         String actualPrice = Driver.getDriver().findElement(By.xpath("//a[normalize-space(.)='" + product + "']/../../h5")).getText();
         // $790
-
         return actualPrice.substring(1);
-
-
     }
-
-
 }

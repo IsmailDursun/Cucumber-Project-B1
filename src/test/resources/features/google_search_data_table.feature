@@ -10,6 +10,6 @@ Feature: Passing multiple parameters to the same step
       | selenium     |
       | cucumber bdd |
       | sql          |
-
+    Then user is on Google search page
 #    option + command + L
 #    CTRL + ALT + L

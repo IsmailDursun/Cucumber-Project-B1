@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SmartBearLoginPage {
+public class SmartBearLoginPage extends SmartBearBasePage{
 
     public SmartBearLoginPage(){
         PageFactory.initElements(Driver.getDriver(), this);
@@ -30,9 +30,4 @@ public class SmartBearLoginPage {
         BrowserUtils.waitForClickable(loginButton, 10);
         BrowserUtils.clickWithJS(loginButton);
     }
-
-    
-
-    
-    
 }

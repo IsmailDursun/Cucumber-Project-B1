@@ -16,11 +16,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+import static org.jsoup.select.Collector.collect;
+
 
 public class BrowserUtils {
 
     /**
      * validate if driver switched to expected ur and title
+     *
      * @param driver
      * @param expectedUrl
      * @param expectedTitle
@@ -28,13 +31,13 @@ public class BrowserUtils {
      * implements assertion
      * note: usually we do not do validation in method, this is for practicing purposes
      */
-    public static void switchWindowAndValidate(WebDriver driver, String expectedUrl, String expectedTitle){
-        expectedUrl= expectedUrl.toLowerCase();
+    public static void switchWindowAndValidate(WebDriver driver, String expectedUrl, String expectedTitle) {
+        expectedUrl = expectedUrl.toLowerCase();
         expectedTitle = expectedTitle.toLowerCase();
         Set<String> windowHandles = driver.getWindowHandles();
         for (String each : windowHandles) {
             driver.switchTo().window(each);
-            if(driver.getCurrentUrl().toLowerCase().contains(expectedUrl)){
+            if (driver.getCurrentUrl().toLowerCase().contains(expectedUrl)) {
                 break;
             }
         }
@@ -46,11 +49,11 @@ public class BrowserUtils {
      * switches to new window by the exact title
      * returns to original window if windows with given title not found
      */
-    public static void switchToWindow(WebDriver driver, String targetTitle){
+    public static void switchToWindow(WebDriver driver, String targetTitle) {
         String origin = driver.getWindowHandle();
-        for (String handle : driver.getWindowHandles()){
+        for (String handle : driver.getWindowHandles()) {
             driver.switchTo().window(handle);
-            if (driver.getTitle().contains(targetTitle)){
+            if (driver.getTitle().contains(targetTitle)) {
                 return;
             }
         }
@@ -59,20 +62,20 @@ public class BrowserUtils {
 
     /**
      * @param driver
-     * @param expectedTitle
-     * returns void, assertion is implemented
+     * @param expectedTitle returns void, assertion is implemented
      * @authot nadir
      */
-    public static void validateTitle(WebDriver driver, String expectedTitle){
+    public static void validateTitle(WebDriver driver, String expectedTitle) {
         Assert.assertTrue(driver.getTitle().contains(expectedTitle));
     }
 
     /**
      * Click any link from loop practice
+     *
      * @param nameOfPage
      * @author nsh
      */
-    public static void loopLinkClick (String nameOfPage){
+    public static void loopLinkClick(String nameOfPage) {
         WebElement element = Driver.getDriver().findElement(By.xpath("//a[.='" + nameOfPage + "']"));
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
@@ -80,6 +83,7 @@ public class BrowserUtils {
 
     /**
      * Moves the mouse to given element
+     *
      * @param element on which to hover
      * @author nsh
      */
@@ -90,6 +94,7 @@ public class BrowserUtils {
 
     /**
      * Scrolls down to an element using JavaScript
+     *
      * @param element
      * @author nsh
      */
@@ -99,6 +104,7 @@ public class BrowserUtils {
 
     /**
      * Clicks on an element using JavaScript
+     *
      * @param element
      * @author nsh
      */
@@ -109,6 +115,7 @@ public class BrowserUtils {
 
     /**
      * Performs double click action on an element
+     *
      * @param element
      * @author nsh
      */
@@ -118,6 +125,7 @@ public class BrowserUtils {
 
     /**
      * Waits for the provided element to be visible on the page
+     *
      * @param element
      * @param timeToWaitInSec
      * @return
@@ -130,6 +138,7 @@ public class BrowserUtils {
 
     /**
      * Waits for the provided element to be invisible on the page
+     *
      * @param element
      * @param timeToWaitInSec
      * @return
@@ -142,6 +151,7 @@ public class BrowserUtils {
 
     /**
      * Waits for provided element to be clickable
+     *
      * @param element
      * @param timeout
      * @return
@@ -154,36 +164,47 @@ public class BrowserUtils {
 
     /**
      * performs a pause
+     *
      * @param seconds
-     * @author nsh
+     * @author id
      */
-    public static void justWait(int seconds){
-        try{
+    public static void justWait(int seconds) {
+        try {
             Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
 
-
     /**
-     *
      * @param elements
      * @return
      */
 
 
     public static List<String> getElementsText(List<WebElement> elements) {
+//        using stream
         return elements.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
+//    using stream with lambda
+//    public static List<String> getElementsText(List<WebElement> elements) {
+//    return elements.stream()
+//            .map(x->x.getText())
+//            .collect(Collectors.toList());
+//  }
 
 
-
-
-
+//    using foreach instead
+//    public static List<String> getElementsText(List<WebElement> elements) {
+//        List<String>elementsText = new ArrayList<>();
+//        for(WebElement element : elements){
+//            elementsText.add(element.getText());
+//        }
+//        return elementsText;
+//    }
 
 
 
