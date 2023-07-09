@@ -5,15 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SmartBearOrderPage extends SmartBearBasePage {
-
+    Map<Integer, Integer> map = new LinkedHashMap<>();
     public SmartBearOrderPage(){
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(id = "ctl00_MainContent_fmwOrder_ddlProduct")
+    @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_ddlProduct']")
     public WebElement product;
 
     @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_txtQuantity']")
@@ -34,10 +37,10 @@ public class SmartBearOrderPage extends SmartBearBasePage {
     @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_txtName']")
     public WebElement customerName;
 
-    @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_TextBox2']")
+    @FindBy(name = "ctl00$MainContent$fmwOrder$TextBox2")
     public WebElement street;
 
-    @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_TextBox3']")
+    @FindBy(name = "ctl00$MainContent$fmwOrder$TextBox3")
     public WebElement city;
 
     @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_TextBox4']")
@@ -47,7 +50,7 @@ public class SmartBearOrderPage extends SmartBearBasePage {
     public WebElement zip;
 
     @FindBy(xpath = "//input[@type='radio']")
-    public List<WebElement> card;
+    public List <WebElement> card;
 
     @FindBy(xpath = "//*[@id='ctl00_MainContent_fmwOrder_TextBox6']")
     public WebElement cardNumber;
@@ -64,10 +67,6 @@ public class SmartBearOrderPage extends SmartBearBasePage {
     @FindBy(xpath = "//h2[contains(text(),'Order')]")
     public WebElement orderHeading;
 
-
-
-    
-    
-
-   
+    @FindBy(xpath = "(//table[@class='SampleTable']/tbody/tr/td)[2]")
+    public WebElement firstRow;
 }

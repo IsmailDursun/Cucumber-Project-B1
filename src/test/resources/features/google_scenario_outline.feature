@@ -7,9 +7,9 @@ Feature: Scenario outline practice
     Then user should see the "<capital>" in the result
 
     Examples:
-      | country     | capital       |
-      | USA         | Washington DC |
-      | Azerbaijan  | Baku          |
-      | Ukraine     | Kyiv          |
-      | Afghanistan | Kabul         |
-      | Turkey      | Ankara        |
+      | country     | capital          |
+      | USA         | Washington, D.C. |
+      | Azerbaijan  | Baku             |
+      | Ukraine     | Kyiv             |
+      | Afghanistan | Kabul            |
+      | Turkey      | Ankara           |

@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.loop</groupId>
-    <artifactId>AutomationCucumberProjectB1</artifactId>
+    <groupId>io.loopcamp</groupId>
+    <artifactId>cucumber-project-b1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,7 +13,6 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 
     <build>
         <plugins>
@@ -27,34 +26,26 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <useUnlimitedThreads>false</useUnlimitedThreads>
                     <perCoreThreadCount>false</perCoreThreadCount>
-                    <includes>
-                        <include>**/CukesRunner*.java</include>
-                    </includes>
+                    <includes>**/*CukesRunner*.java</includes>
                 </configuration>
 
             </plugin>
-
-
-
         </plugins>
     </build>
-
-
     <dependencies>
 
-
-
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.2.3</version>
         </dependency>
 
-
-
-
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
         <dependency>
@@ -68,8 +59,6 @@
             <artifactId>extentreports</artifactId>
             <version>5.0.4</version>
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -84,7 +73,6 @@
             <version>5.3.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
 
 
         <dependency>
@@ -100,6 +88,7 @@
             <version>7.12.1</version>
         </dependency>
 
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -108,7 +97,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -123,9 +111,13 @@
             <version>2.20.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/me.jvt.cucumber/reporting-plugin -->
+
+
+
 
     </dependencies>
+
+
 
 
 </project>

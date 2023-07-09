@@ -1,5 +1,5 @@
 Feature: product data table practice
-
+  @product
   Scenario: verify each product price
 #    practice List<Map<String, String>>
     Given User is on the HomePage
@@ -14,7 +14,7 @@ Feature: product data table practice
   | Monitors | Apple monitor 24  | 400           |
   | Monitors | ASUS Full HD      | 230           |
 
-
+  @product
   Scenario: verify each product price listOfList
     Given User is on the HomePage
     Then User should be able to see expected prices in following products with listOflist
@@ -28,7 +28,7 @@ Feature: product data table practice
   | Monitors | ASUS Full HD      | 230 |
 
 
-  @regression @wip
+  @product
   Scenario: Verify students name in discord
     Then User should be able to see following names in their groups
   | Group1 | Ilgar  | Natalia | Nadir  |

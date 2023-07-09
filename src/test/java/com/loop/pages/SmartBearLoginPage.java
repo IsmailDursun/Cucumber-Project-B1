@@ -6,28 +6,35 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SmartBearLoginPage extends SmartBearBasePage{
 
+
+public class SmartBearLoginPage extends SmartBearBasePage{
     public SmartBearLoginPage(){
         PageFactory.initElements(Driver.getDriver(), this);
+
     }
+
 
     @FindBy(xpath = "//*[@id='ctl00_MainContent_username']")
-    public WebElement usernameBox;
-
+    public WebElement usernameInput;
     @FindBy(xpath = "//*[@id='ctl00_MainContent_password']")
-    public WebElement passwordBox;
-
-    @FindBy(xpath = "//*[@id='ctl00_MainContent_login_button']")
+    public WebElement passwordInput;
+    @FindBy(className = "button")
     public WebElement loginButton;
 
-    public void login (String username,String password){
-        BrowserUtils.waitForVisibility(usernameBox, 10);
-        usernameBox.clear();
-        usernameBox.sendKeys(username);
-        passwordBox.clear();
-        passwordBox.sendKeys(password);
-        BrowserUtils.waitForClickable(loginButton, 10);
+    public void loginSmartBear(String username, String password){
+        BrowserUtils.waitForVisibility(usernameInput,5);
+        usernameInput.clear();
+        usernameInput.sendKeys(username);
+        passwordInput.clear();
+        passwordInput.sendKeys(password);
+        BrowserUtils.waitForClickable(loginButton,5);
         BrowserUtils.clickWithJS(loginButton);
+
     }
+
+
+
+
+
 }

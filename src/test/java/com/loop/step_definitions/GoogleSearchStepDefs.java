@@ -1,48 +1,44 @@
 package com.loop.step_definitions;
 
 import com.loop.pages.GooglePage;
-import com.loop.utilities.ConfigurationReader;
-import com.loop.utilities.Driver;
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.bs.A;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.bouncycastle.asn1.cms.KEKIdentifier;
+import com.loop.utilities.*;
+import io.cucumber.java.en.*;
+import org.apache.logging.log4j.*;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
-
-import javax.swing.*;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 public class GoogleSearchStepDefs {
-
     GooglePage googlePage = new GooglePage();
+    private static final Logger LOG = LogManager.getLogger();
 
     @Given("user is on Google search page")
     public void user_is_on_google_search_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("google.url"));
+        LOG.info("User is on Google page");
     }
+
     @When("user types loop academy in the google search box and click enter")
     public void user_types_loop_academy_in_the_google_search_box_and_click_enter() throws InterruptedException {
-        googlePage.searchBox.sendKeys("Loop Academy");
-        googlePage.searhcButton.click();
+        googlePage.searchBox.sendKeys("Loop Academy"+Keys.ENTER);
+        LOG.info("User types input to Google page");
     }
-    @Then("User should see Loop Academy - Google search is in the google title")
+
+    @Then("User should see Loop Academy - Google Search is in the google title")
     public void user_should_see_loop_academy_google_search_is_in_the_google_title() {
-        Assert.assertTrue(Driver.getDriver().getTitle().contains("Loop Academy"));
+        String actualTitle = Driver.getDriver().getTitle();
+        Assert.assertEquals("Loop Academy - Google Search", actualTitle);
+        LOG.info("User sees the results");
     }
 
     @When("user types {string} in the google search box and click enter")
     public void user_types_in_the_google_search_box_and_click_enter(String input) {
-        googlePage.searchBox.sendKeys(input);
-        googlePage.searhcButton.click();
+        googlePage.searchBox.sendKeys(input + Keys.ENTER);
+
     }
-    @Then("User should see {string} search is in the google title")
-    public void user_should_see_search_is_in_the_google_title(String input) {
-        Assert.assertTrue(Driver.getDriver().getTitle().contains(input));
+    @Then("User should see {string} in the google title")
+    public void user_should_see_in_the_google_title(String title) {
+        Assert.assertEquals("Expected does not match actual",title,Driver.getDriver().getTitle());
     }
 
     @Then("user search the following items")
@@ -65,10 +61,12 @@ public class GoogleSearchStepDefs {
     @When("users search for the {string}")
     public void users_search_for_the(String country) throws InterruptedException {
         googlePage.searchBox.sendKeys("What is the capital of " + country + Keys.ENTER);
+        LOG.info("User searches for "+country);
         Thread.sleep(3000);
     }
     @Then("user should see the {string} in the result")
     public void user_should_see_the_in_the_result(String capital) {
         Assert.assertEquals(googlePage.capitalCity.getText(), capital);
+        LOG.info("User should see the "+capital);
     }
 }

@@ -30,7 +30,6 @@ public class Driver {
     /**
      * singleton pattern
      * @return driver
-     * @author nsh
      */
     public static WebDriver getDriver(){
         if(driverPool.get()==null) {
@@ -56,7 +55,6 @@ public class Driver {
 
     /**
      * closing driver
-     * @author nsh
      */
     public static void closeDriver (){
         if(driverPool.get() !=null){
@@ -64,10 +62,6 @@ public class Driver {
             driverPool.remove();
         }
     }
-
-
-
-
 }
 
 
