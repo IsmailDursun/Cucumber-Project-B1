@@ -102,8 +102,6 @@ public class LoginPage {
     @FindBy(xpath = "//h1[.='Received docs']")
     public WebElement ReceivedDocsText;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    public WebElement continueButton;
 
 
 
@@ -120,14 +118,6 @@ public class LoginPage {
         passwordInput.sendKeys(password);
         BrowserUtils.waitForClickable(loginButton, 5);
         BrowserUtils.clickWithJS(loginButton);
-
-        if(continueButton.isDisplayed()) {
-            try {
-                BrowserUtils.clickWithJS(continueButton);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public String getleftBar(String leftBar) {

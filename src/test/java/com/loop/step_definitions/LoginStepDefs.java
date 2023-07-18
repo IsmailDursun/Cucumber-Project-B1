@@ -107,7 +107,7 @@ public class LoginStepDefs{
     }
 
     @When("user enters credentials")
-    public void user_enters_credentials(Map<String, String> credentials) throws InterruptedException {
+    public void user_enters_credentials(Map<String, String> credentials){
 //        loginPage.usernameInput.sendKeys(credentials.get("username"));
 //        loginPage.passwordInput.sendKeys(credentials.get("password"));
 //        Thread.sleep(3000);
@@ -279,4 +279,5 @@ public class LoginStepDefs{
             assertEquals(p, Driver.getDriver().getTitle());
         });
     }
+
 }

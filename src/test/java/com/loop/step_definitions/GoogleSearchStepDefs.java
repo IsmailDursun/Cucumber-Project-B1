@@ -14,7 +14,9 @@ public class GoogleSearchStepDefs {
 
     @Given("user is on Google search page")
     public void user_is_on_google_search_page() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("google.url"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("google.url"));  //this will run from conf.properties
+//        Driver.getDriver().get(System.getenv("url")); // this will read from Jenkins
+//        Driver.getDriver().get(System.getProperty("url"));  //this will also read from Jenkins
         LOG.info("User is on Google page");
     }
 
@@ -34,6 +36,7 @@ public class GoogleSearchStepDefs {
     @When("user types {string} in the google search box and click enter")
     public void user_types_in_the_google_search_box_and_click_enter(String input) {
         googlePage.searchBox.sendKeys(input + Keys.ENTER);
+//        googlePage.searchBox.sendKeys(System.getProperty("fromJenkins")+Keys.ENTER); //This will read from Jenkins config
 
     }
     @Then("User should see {string} in the google title")
