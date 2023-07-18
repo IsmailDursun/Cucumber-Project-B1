@@ -11,15 +11,14 @@ import org.junit.runner.RunWith;
         plugin = {"html:target/html-reports/cucumber-reports.html",
                 "json:target/json-reports/json-report",
                 "rerun:target/rerun.txt",
-                "pretty",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-        },
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         features = "src/test/resources/features",
         glue = "com/loop/step_definitions",
         dryRun = false,
-        tags = "@capital",
-        monochrome = false
-        // publish = true
+        //tags = "@smoke or @regression" "@smoke and @regression",
+        tags = "@login",
+        monochrome = false,
+        publish = true    //if true it will generate results for the cucumber
 )
 public class CukesRunner {
 

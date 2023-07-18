@@ -3,20 +3,20 @@ package com.loop.utilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.*;
-
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ExcelUtils {
-
     private Sheet workSheet;
     private Workbook workBook;
     private String path;
-    private static final Logger LOGGER = LogManager.getLogger(Driver.class);
+    private static final Logger LOG = LogManager.getLogger(Driver.class);
 
     public ExcelUtils(String path, String sheetName) {
         this.path = path;
@@ -28,11 +28,10 @@ public class ExcelUtils {
             workSheet = workBook.getSheet(sheetName);
 
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
-
     public String getCellData(int rowNum, int colNum) {
         Cell cell;
         try {
@@ -40,8 +39,8 @@ public class ExcelUtils {
             String cellData = cell.toString();
             return cellData;
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-            throw new RuntimeException(e);
+            LOG.error(e.getMessage());
+            throw new RuntimeException();
         }
     }
 
@@ -58,7 +57,6 @@ public class ExcelUtils {
         return data;
 
     }
-
     public List<Map<String, String>> getDataList() {
         // get all columns
         List<String> columns = getColumnsNames();
@@ -75,13 +73,10 @@ public class ExcelUtils {
                 int columnIndex = cell.getColumnIndex();
                 rowMap.put(columns.get(columnIndex), cell.getCellStyle().toString());
             }
-
             data.add(rowMap);
         }
-
         return data;
     }
-
     public List<String> getColumnsNames() {
         List<String> columns = new ArrayList<>();
 
@@ -90,7 +85,6 @@ public class ExcelUtils {
         }
         return columns;
     }
-
     public void setCellData(String value, int rowNum, int colNum) {
         Cell cell;
         Row row;
@@ -110,21 +104,18 @@ public class ExcelUtils {
 
             fileOut.close();
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             e.printStackTrace();
             throw new RuntimeException("Unable to set cell value.");
         }
     }
-
     public void setCellData(String value, String columnName, int row) {
         int column = getColumnsNames().indexOf(columnName);
         setCellData(value, row, column);
     }
-
     public int columnCount() {
         return workSheet.getRow(0).getLastCellNum();
     }
-
     public int rowCount() {
         return workSheet.getLastRowNum();
     }

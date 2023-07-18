@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+;
+
 
 public class BrowserUtils {
 
@@ -23,9 +25,8 @@ public class BrowserUtils {
      * @param driver
      * @param expectedUrl
      * @param expectedTitle
-     * @author Vlad
      * implements assertion
-     * note: usually we do not do validation in t\method, this is for practicing purposes
+     * note: usually we do not do validation in test method, this is for practicing purposes
      */
     public static void switchWindowAndValidate(WebDriver driver,String expectedUrl, String expectedTitle){
         expectedUrl = expectedUrl.toLowerCase();
@@ -50,7 +51,6 @@ public class BrowserUtils {
      * return to original window if windows with give title not found
      * @param driver
      * @param targetTitle
-     * author Vlad
      */
     public static void switchToWindow(WebDriver driver, String targetTitle){
         String origin = driver.getWindowHandle();
@@ -66,12 +66,10 @@ public class BrowserUtils {
         assertEquals(expectedTitle,driver.getTitle());
     }
 
-    /**
-     *
-
+    /*
      @param nameOfthePage from loop practice page
      once you on the page call it
-     @nsh*/
+     */
     public static void loopLinkClick(String nameOfthePage){
         WebElement element = Driver.getDriver().findElement(By.xpath("//a[.='" + nameOfthePage + "']"));
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
@@ -82,7 +80,6 @@ public class BrowserUtils {
     /**
      * Moves the mouse to given element
      * @param element on which to hover
-     * @author Vlad
      */
     public static void hover(WebElement element) {
         new Actions(Driver.getDriver()).moveToElement(element).perform();
@@ -91,7 +88,6 @@ public class BrowserUtils {
     /**
      * Scrolls down to an element using JavaScript
      * @param element
-     * @author Vlad
      */
     public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -101,7 +97,6 @@ public class BrowserUtils {
     /**
      * Clicks on an element using JavaScript
      * @param element
-     * @author nsh
      */
     public static void clickWithJS(WebElement element) {
         scrollToElement(element);
@@ -112,7 +107,6 @@ public class BrowserUtils {
 
      Performs double click action on an element
      @param element
-     @author nsh*/
     public static void doubleClick(WebElement element) {
         new Actions(Driver.getDriver()).doubleClick(element).build().perform();}
 
@@ -121,7 +115,6 @@ public class BrowserUtils {
      * @param element
      * @param timeToWaitSec
      * return element
-     * @author Nadir
      */
     public static WebElement waitForVisibility(WebElement element,int timeToWaitSec){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(timeToWaitSec));
@@ -132,7 +125,6 @@ public class BrowserUtils {
      * @param element
      * @param timeToWaitInSec
      * @return
-     * @author nsh
      */
     public static void waitForInVisibility(WebElement element, int timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeToWaitInSec));
@@ -144,7 +136,6 @@ public class BrowserUtils {
      * @param element
      * @param timeout
      * @return
-     * @author nsh
      */
     public static WebElement waitForClickable(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));

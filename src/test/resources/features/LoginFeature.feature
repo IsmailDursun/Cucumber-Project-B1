@@ -4,7 +4,7 @@ Feature: Docuport Login Logout Feature
     Given user is on Docuport login page
 
 
-  @login
+#  @login
   Scenario: Login as a client
     Given user is on Docuport login page
     When user enters username for client
@@ -12,7 +12,7 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     Then user should see the home page for client
 
-  @login
+#  @login
   Scenario: Login as an employee
     Given user is on Docuport login page
     When user enters username for employee
@@ -20,7 +20,7 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     Then user should see the home page for employee
 
-  @login
+#  @login
   Scenario: Login as a advisor
     Given user is on Docuport login page
     When user enters username for advisor
@@ -28,7 +28,7 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     Then user should see the home page for advisor
 
-  @login
+#  @login
   Scenario: Login as an admin
     Given user is on Docuport login page
     When user enters username for admin
@@ -36,7 +36,7 @@ Feature: Docuport Login Logout Feature
     And user clicks login button
     Then user should see the home page for admin
 
-  @login
+#  @login
   Scenario: Login as a client map practice
     When user enters credentials
       | username | b1g3_client@gmail.com |
@@ -74,7 +74,7 @@ Feature: Docuport Login Logout Feature
       | b1g3_advisor@gmail.com    | Group3   |
       | b1g3_employee@gmail.com   | Group3   |
 
-  @login
+#  @login
   Scenario: Login as an advisor
     When user enters username for advisor
     And user enters password for advisor

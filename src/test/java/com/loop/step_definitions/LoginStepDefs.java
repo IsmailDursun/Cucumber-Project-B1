@@ -9,14 +9,18 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.interactions.Actions;
+
 import java.util.List;
 import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.openqa.selenium.Keys.ENTER;
 
-public class LoginStepDefs {
+public class LoginStepDefs{
     Scenario scenario;
     LoginPage loginPage = new LoginPage();
     String Login;
@@ -48,7 +52,7 @@ public class LoginStepDefs {
     public void user_should_see_the_home_page_for_client() {
         BrowserUtils.waitForVisibility(loginPage.homeButton, 10);
         loginPage.homeButton.isDisplayed();
-//        BrowserUtils.screenshot_URL();
+        BrowserUtils.takeScreenshot();
     }
 
     @When("user enters username for employee")
@@ -114,12 +118,14 @@ public class LoginStepDefs {
     }
 
     String login = "";
+    private static final Logger LOGGER = LogManager.getLogger(Driver.class);
 
     @When("user enters {string} and {string}")
     public void user_enters_and(String username, String password) {
         this.login = username;
         loginPage.usernameInput.sendKeys(username);
-        loginPage.passwordInput.sendKeys(password + Keys.ENTER);
+        loginPage.passwordInput.sendKeys(password + ENTER);
+
     }
 
     @Then("validate left navigation bar")
